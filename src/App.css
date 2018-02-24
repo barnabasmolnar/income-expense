@@ -1,28 +1,58 @@
-.App {
-  text-align: center;
+.toggle-date-view .active { border-bottom: 2px solid #607d8b; }
+.toggle-date-view .nav-link { color: #222; }
+.toggle-date-view .nav-link:hover { color: #28a2b8 }
+
+.list-group-item { border-radius: .25rem !important; }
+
+.income-expense-item > div { min-width: 85px; }
+
+.hidden-actions { display: none; }
+
+.soft-shadow { box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24); }
+
+.sort-group .btn {
+    border: 1px solid #ccc;
+}
+.sort-box {
+    background: #fff;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: .25rem;
+    margin-left: auto;
+}
+.show-el {
+    display: inline-flex;
+}
+.sort-group .btn { padding-left: 1.75rem; padding-right: 1.75rem; }
+.sort-group { position: relative; }
+.sort-group .btn .fa-angle-up,
+.sort-group .btn .fa-angle-down {
+    position: absolute;
+    right: 10px;
+    top: 10px;
+}
+.sort-icon { display: none; }
+.sort-asc .sort-icon-asc { display: inline-block; }
+.default-sort .sort-icon-desc { display: inline-block; }
+.default-sort.sort-asc .sort-icon-desc { display: none; }
+
+.add-btn {
+    position: fixed;
+    right: 20px;
+    bottom: 20px;
+    width: 50px;
+    height: 50px;
+    line-height: 50px;
+    text-align: center;
+    border-radius: 50%;
+    background: #007bff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 100;
 }
 
-.App-logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 80px;
-}
-
-.App-header {
-  background-color: #222;
-  height: 150px;
-  padding: 20px;
-  color: white;
-}
-
-.App-title {
-  font-size: 1.5em;
-}
-
-.App-intro {
-  font-size: large;
-}
-
-@keyframes App-logo-spin {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
-}
+.fa-plus { font-size: 1.25rem; }
