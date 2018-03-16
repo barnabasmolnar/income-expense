@@ -9,7 +9,20 @@
 //   typeRecurring: true-s tételekre és akkor, ha arra nyomsz az
 //   kitöltse a legutóbbi alapján, de persze elküldés előtt tudd módosítani?
 
-const initalState = [
+import { combineReducers } from "redux";
+import moment from "moment";
+import {
+    CHANGE_PERIOD,
+    PREV_DATE,
+    NEXT_DATE,
+    CHANGE_TYPE,
+    changePeriod,
+    prevDate,
+    nextDate,
+    changeType
+} from "../actions/index";
+
+const initialItems = [
     {
         id: 1,
         type: "expense",
@@ -17,7 +30,7 @@ const initalState = [
         title: "Pizza from Pizza Forte",
         amount: 2820,
         currency: "HUF",
-        dateAdded: "2018.02.24. 23:17",
+        dateAdded: new Date("2018-02-24T23:17:00"),
         extraInfo: "Lorem ipsum blabla nice little extra text info here",
         userName: "Roy",
         isRecurring: false
@@ -29,7 +42,7 @@ const initalState = [
         title: "Monthly pass",
         amount: 7650,
         currency: "HUF",
-        dateAdded: "2018.02.24. 22:12",
+        dateAdded: new Date("2018-02-24T23:17:00"),
         extraInfo: "",
         userName: "Roy's Mom",
         isRecurring: true
@@ -41,15 +54,87 @@ const initalState = [
         title: "Monthly wage",
         amount: 266000,
         currency: "HUF",
-        dateAdded: "2018.02.10. 10:00",
+        dateAdded: new Date("2018-02-10T10:00:00"),
         extraInfo: "yay",
+        userName: "Roy",
+        isRecurring: true
+    },
+    {
+        id: 4,
+        type: "expense",
+        category: "repairs",
+        title: "Bathroom repairs",
+        amount: 1200,
+        currency: "HUF",
+        dateAdded: new Date("2018-01-16T10:00:00"),
+        extraInfo: "Ugh...",
+        userName: "Roy's Mom",
+        isRecurring: false
+    },
+    {
+        id: 5,
+        type: "expense",
+        category: "food",
+        title: "Chicken",
+        amount: 2920,
+        currency: "HUF",
+        dateAdded: new Date("2018-02-19T23:17:00"),
+        extraInfo: "Tasty food",
+        userName: "Roy",
+        isRecurring: false
+    },
+    {
+        id: 6,
+        type: "income",
+        category: "gift",
+        title: "Christmas gift",
+        amount: 40000,
+        currency: "HUF",
+        dateAdded: new Date("2017-12-24T18:00:00"),
+        extraInfo: "",
         userName: "Roy",
         isRecurring: true
     }
 ]
 
-const items = (state = initalState) => {
-    return state;
+const initialDate = {
+    period: "year",
+    timestamp: moment()
 }
-   
-export default items;
+
+// Helper function
+// Change the date by 1 period (week/month/year) in either direction (add/subtract)
+const changeDate = (state, changeDir) => {
+	const date = state.timestamp.clone(); //clone it to keep the state pure
+    date[changeDir](1, `${state.period}s`); // e.g. date.add(1, "weeks") or date.subtract(1, "months")
+    return Object.assign({}, state, { timestamp: date });
+}
+
+// Reducers
+const items = (state = initialItems) => state;
+
+const date = (state = initialDate, action) => {
+    switch (action.type) {
+        case CHANGE_PERIOD:
+            return Object.assign({}, state, { period: action.period });
+        case PREV_DATE:
+            return changeDate(state, "subtract");
+        case NEXT_DATE:
+            return changeDate(state, "add");
+        default:
+            return state;
+    }
+}
+
+const type = (state = null, action) => action.type === CHANGE_TYPE ? action.newType : state;
+
+const reducers = combineReducers({
+    items,
+    date,
+    type
+});
+
+// Pro megoldasok:
+// https://jsfiddle.net/tothatt/7n8c88sv/
+
+export default reducers;
