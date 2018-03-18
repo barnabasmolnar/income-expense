@@ -1,0 +1,5 @@
+.selected-type {
+    transform: scale(1.05);
+    border: 4px solid #fff;
+    transition: transform .5s ease;
+}
