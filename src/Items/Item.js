@@ -1,5 +1,4 @@
 import React from "react";
-// import './Item.css';
 
 const formatAmount = (num, currency) => {
     return `${num.toLocaleString()} ${currency}`
@@ -11,7 +10,7 @@ const iconMapping = {
     "wage": "fa-money-bill-alt"
 }
 
-const Item = (props) => {
+const Item = props => {
     const typeClassName = `text-white py-3 rounded-left d-flex justify-content-center align-items-center ${props.type === "income" ? "bg-success" : "bg-danger"}`;
     const iconClassName = `fas ${iconMapping[props.category]} h2 m-0`;
 

@@ -1,21 +1,11 @@
 import React from 'react';
 import { connect } from "react-redux";
 import Item from "./Item";
-import moment from "moment";
+import { getWeek, inPeriod, hasType } from "../helpers";
 
-// Helper functions for filtering
-const getWeek = date =>	`${date.isoWeekYear()}W${date.isoWeek()}`; //e.g 2018W9
-const inPeriod = (date, item) => {
-    const dateAdded = moment(item.dateAdded);
-    return date.period === "week" ?
-        getWeek(date.timestamp) === getWeek(dateAdded)
-        : date.timestamp.isSame(dateAdded, date.period);
-};
-const hasType = (type, item) => type === null ? true : type === item.type;
+const visibilityFilter = state => state.items.filter( item => inPeriod(state.date, item) && hasType(state.type, item) );
 
-const visibilityFilter = (state) => state.items.filter( item => inPeriod(state.date, item) && hasType(state.type, item) );
-
-const Items = (props) => {
+const Items = props => {
     return (
         <div className="container pt-3">
             <div className="row mb-4 align-items-center">
@@ -33,15 +23,15 @@ const Items = (props) => {
             </div>
 
             {
-                props.items.map( (item) => <Item {...item} key={item.id} /> )
+                props.items.map( item => <Item {...item} key={item.id} /> )
             }
 
         </div>
     )
 }
 
-const mapStateToProps = (state) => ({
+const mapStateToProps = state => ({
     items: visibilityFilter(state)
-})
+});
 
 export default connect(mapStateToProps)(Items);

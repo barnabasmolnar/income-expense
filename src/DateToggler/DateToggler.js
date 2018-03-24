@@ -1,32 +1,36 @@
 import React from 'react';
-
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { changePeriod} from "../actions/index";
+import classnames from "classnames";
 
-const DateToggler = (props) => (
+const DateToggler = props => (
     <div className="toggle-date-view pt-2 bg-white">
         <div className="container">
             <ul className="nav text-uppercase justify-content-center">
                 <li className="nav-item" onClick={() => props.changePeriod("week")}>
-                    <span className={props.selectedPeriod === "week" ? "nav-link active" : "nav-link"}>Weekly</span>
+                    <span className={classnames("nav-link", {active: props.selectedPeriod === "week"})}>Weekly</span>
                 </li>
                 <li className="nav-item" onClick={() => props.changePeriod("month")}>
-                    <span className={props.selectedPeriod === "month" ? "nav-link active" : "nav-link"}>Monthly</span>
+                    <span className={classnames("nav-link", {active: props.selectedPeriod === "month"})}>Monthly</span>
                 </li>
                 <li className="nav-item" onClick={() => props.changePeriod("year")}>
-                    <span className={props.selectedPeriod === "year" ? "nav-link active" : "nav-link"}>Yearly</span>
+                    <span className={classnames("nav-link", {active: props.selectedPeriod === "year"})}>Yearly</span>
                 </li>
             </ul>
         </div>
     </div>
 )
 
-const mapDispatchToProps = (dispatch) => ({
-    changePeriod: (period) => dispatch(changePeriod(period))
-});
+// const mapDispatchToProps = (dispatch) => ({
+//     changePeriod: (period) => dispatch(changePeriod(period))
+// });
 
-const mapStateToProps = (state) => ({
+const mapDispatchToProps = dispatch => bindActionCreators({
+    changePeriod
+}, dispatch);
+
+const mapStateToProps = state => ({
     selectedPeriod: state.date.period
 });
 

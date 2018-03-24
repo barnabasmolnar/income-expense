@@ -2,10 +2,11 @@ import React from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { changeType, prevDate, nextDate } from "../actions/index";
-import moment from "moment";
 import "./MainSummary.css";
+import { getWeek, inPeriod, hasType } from "../helpers";
+import classnames from "classnames";
 
-const formatPeriod = (date) => {
+const formatPeriod = date => {
     switch (date.period) {
         case "year":
             return date.timestamp.format("YYYY")
@@ -19,16 +20,6 @@ const formatPeriod = (date) => {
                 .join(" - ")
     }
 }
-
-// Helper functions for filtering
-const getWeek = date =>	`${date.isoWeekYear()}W${date.isoWeek()}`; //e.g 2018W9
-const inPeriod = (date, item) => {
-    const dateAdded = moment(item.dateAdded);
-    return date.period === "week" ?
-        getWeek(date.timestamp) === getWeek(dateAdded)
-        : date.timestamp.isSame(dateAdded, date.period);
-};
-const hasType = (type, item) => type === null ? true : type === item.type;
 
 const calcSums = (items, date) => {
     const filteredItems = items.filter(item => inPeriod(date, item));
@@ -45,7 +36,7 @@ const calcSums = (items, date) => {
     }
 }
 
-const MainSummary = (props) => {
+const MainSummary = props => {
     return (
         <div className="jumbotron jumbotron-fluid mb-0">
             <div className="container">
@@ -74,10 +65,7 @@ const MainSummary = (props) => {
                 <div className="row">
                     <div className="col-sm-4 mb-2 mb-sm-0">
                         <div
-                            className={props.selectedType === null 
-                                ? "card bg-info text-white h-100 soft-shadow selected-type"
-                                : "card bg-info text-white h-100 soft-shadow"
-                            }
+                            className={classnames("card bg-info text-white h-100 soft-shadow", {"selected-type": props.selectedType === null})}
                             onClick={() => props.changeType(null)}
                         >
                             <div className="card-body">
@@ -88,10 +76,7 @@ const MainSummary = (props) => {
                     </div>
                     <div className="col-sm-4 mb-2 mb-sm-0">
                         <div
-                            className={props.selectedType === "income" 
-                                ? "card bg-success text-white h-100 soft-shadow selected-type"
-                                : "card bg-success text-white h-100 soft-shadow"
-                            }
+                            className={classnames("card bg-success text-white h-100 soft-shadow", {"selected-type": props.selectedType === "income"})}
                             onClick={() => props.changeType("income")}
                         >
                             <div className="card-body">
@@ -102,10 +87,7 @@ const MainSummary = (props) => {
                     </div>
                     <div className="col-sm-4">
                         <div
-                            className={props.selectedType === "expense" 
-                                ? "card bg-danger text-white h-100 soft-shadow selected-type"
-                                : "card bg-danger text-white h-100 soft-shadow"
-                            }
+                            className={classnames("card bg-danger text-white h-100 soft-shadow", {"selected-type": props.selectedType === "expense"})}
                             onClick={() => props.changeType("expense")}
                         >
                             <div className="card-body">
@@ -120,19 +102,22 @@ const MainSummary = (props) => {
     )
 }
 
-const mapDispatchToProps = (dispatch) => ({
-    changeType: (newType) => dispatch(changeType(newType)),
-    prevDate: () => dispatch(prevDate()),
-    nextDate: () => dispatch(nextDate())
-});
+// const mapDispatchToProps = dispatch => ({
+//     changeType: (newType) => dispatch(changeType(newType)),
+//     prevDate: () => dispatch(prevDate()),
+//     nextDate: () => dispatch(nextDate())
+// });
 
-const mapStateToProps = (state) => ({
+const mapDispatchToProps = dispatch => bindActionCreators({
+    changeType,
+    prevDate,
+    nextDate
+}, dispatch);
+
+const mapStateToProps = state => ({
     selectedType: state.type,
     currentDate: state.date,
     summary: calcSums(state.items, state.date)
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(MainSummary);
-
-// Implement next time
-// https://www.npmjs.com/package/classnames
