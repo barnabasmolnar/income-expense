@@ -19,3 +19,7 @@
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+
+# new-design
+/new-design/node_modules
+/new-design/dist

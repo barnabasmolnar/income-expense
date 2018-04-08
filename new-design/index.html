@@ -1,0 +1,221 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" href="dist/custom.css">
+    
+    <title>Income & Expense tracker app</title>
+</head>
+
+<body>
+    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modal-test">
+        Launch demo modal
+    </button>
+    
+    <!-- Modal -->
+    <div class="modal fade" id="modal-test" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header align-items-center">
+                    <h5 class="modal-title display-3">Add item</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="container-fluid p-0">
+                        <div class="row pb-4">
+                            <div class="col-4">Type</div>
+                            <div class="col-8">
+                                <div class="row">
+                                    <div class="col-3 text-center p-3 border main-summary__type main-summary__type--active">
+                                        <div class="d-inline-block main-summary__icon main-summary__icon--default income-bg">
+                                            <i class="material-icons" aria-hidden="true">trending_up</i>
+                                        </div>
+                                        <div class="main-summary__content">
+                                            <div>Income</div>
+                                        </div>
+                                    </div>
+                                    <div class="col-3 text-center p-3 main-summary__type">
+                                        <div class="d-inline-block main-summary__icon main-summary__icon--default expense-bg">
+                                            <i class="material-icons" aria-hidden="true">trending_down</i>
+                                        </div>
+                                        <div class="main-summary__content">
+                                            <div>Expense</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row py-4 border-top">
+                            <div class="col-4">Category</div>
+                            <div class="col-8">
+                                <div class="row">
+                                    <select class="col-6 custom-select">
+                                        <option value="">Option #1</option>
+                                        <option value="">Option #2</option>
+                                        <option value="">Option #3</option>
+                                        <option value="">Option #4</option>
+                                        <option value="">Option #5</option>
+                                        <option value="">Option #6</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row py-4 border-top">
+                            <div class="col-4">Name</div>
+                            <div class="col-8">
+                                <div class="row">
+                                    <input class="col-6 custom-input" type="text" name="" id="" value="Item name" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary">Save changes</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container-fluid navbar bg-dark text-white py-3">
+        <div class="container">
+            <div class="row">
+                <div class="col">
+                    Navbar
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container my-5">
+        <div class="row">
+            <div class="col-12 col-md-7 order-2 order-md-1 main-summary">
+                <div class="row">
+                    <div class="col text-center p-3 border-right main-summary__type main-summary__type--active">
+                        <div class="d-inline-block main-summary__icon main-summary__icon--active">
+                            <i class="material-icons" aria-hidden="true">account_balance_wallet</i>
+                        </div>
+                        <div class="main-summary__content">
+                            <div>Balance</div>
+                            <div>2.800.000</div>
+                        </div>
+                    </div>
+                    <div class="col text-center p-3 border-right main-summary__type">
+                        <div class="d-inline-block main-summary__icon income-bg">
+                            <i class="material-icons" aria-hidden="true">trending_up</i>
+                        </div>
+                        <div class="main-summary__content">
+                            <div>Income</div>
+                            <div>3.800.000</div>
+                        </div>
+                    </div>
+                    <div class="col text-center p-3 main-summary__type">
+                        <div class="d-inline-block main-summary__icon expense-bg">
+                            <i class="material-icons" aria-hidden="true">trending_down</i>
+                        </div>
+                        <div class="main-summary__content">
+                            <div>Expense</div>
+                            <div>1.000.000</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-12 col-md ml-md-5 mb-5 mb-md-0 order-1 order-md-2 d-flex flex-column date-selection">
+                <div class="row text-center">
+                    <div class="col p-2 border-right border-bottom date-selection__period date-selection__period--active">Weekly</div>
+                    <div class="col p-2 border-right border-bottom date-selection__period">Monthly</div>
+                    <div class="col p-2 border-bottom date-selection__period">Yearly</div>
+                </div>
+
+                <div class="row py-3 py-md-0 date-selection__toggler">
+                    <div class="col-auto text-left date-toggler__toggle">
+                        <i class="fa fa-chevron-left"></i>
+                    </div>
+                    <div class="col text-center date-toggler__date">March 2018</div>
+                    <div class="col-auto text-right date-toggler__toggle">
+                        <i class="fa fa-chevron-right"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container items bg-white p-sm-5">
+        <div class="row align-items-center py-3 items__row items__row--income">
+            <div class="col-icon items__icon">
+                <i class="fa fa-money" aria-hidden="true"></i>
+            </div>
+            <div class="col items__content">
+                <div class="items__content-category">Salary</div>
+                <div class="items__content-title">Monthly salary</div>
+            </div>
+            <div class="col-auto items__amount income-colour">+ 266.000</div>
+            <div class="col-auto d-flex items__actions">
+                <div class="items__action-elem">
+                    <!-- <i class="fa fa-eye" aria-hidden="true"></i> -->
+                    Action
+                </div>
+                <div class="items__action-elem">
+                    <!-- <i class="fa fa-pencil-square-o" aria-hidden="true"></i> -->
+                    Action
+                </div>
+                <div class="items__action-elem">
+                    <!-- <i class="fa fa-trash-o" aria-hidden="true"></i> -->
+                    Action
+                </div>
+            </div>
+        </div>
+        <div class="row align-items-center py-3 items__row items__row--expense">
+            <div class="col-icon items__icon">
+                <i class="fa fa-bus" aria-hidden="true"></i>
+            </div>
+            <div class="col items__content">
+                <div class="items__content-category">Travel</div>
+                <div class="items__content-title">Monthly pass</div>
+            </div>
+            <div class="col-auto items__amount expense-colour">- 7.000</div>
+        </div>
+        <div class="row align-items-center py-3 items__row items__row--income">
+            <div class="col-icon items__icon">
+                <i class="fa fa-cutlery" aria-hidden="true"></i>
+            </div>
+            <div class="col items__content">
+                <div class="items__content-category">Food</div>
+                <div class="items__content-title">Pizza from Casta Diva</div>
+            </div>
+            <div class="col-auto items__amount expense-colour">- 4.500</div>
+        </div>
+        <div class="row align-items-center py-3 items__row items__row--expense">
+            <div class="col-icon items__icon">
+                <i class="fa fa-money" aria-hidden="true"></i>
+            </div>
+            <div class="col items__content">
+                <div class="items__content-category">Salary</div>
+                <div class="items__content-title">Monthly salary</div>
+            </div>
+            <div class="col-auto items__amount income-colour">+ 266.000</div>
+        </div>
+    </div>
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <!--
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+</body>
+
+</html>

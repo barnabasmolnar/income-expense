@@ -1,4 +1,4 @@
-// - kategória (required)
+// - kategória (required) - select
 // - name (required)
 // - amount (required)
 // - date added (auto generated)
