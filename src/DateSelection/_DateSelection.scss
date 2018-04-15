@@ -1,0 +1,16 @@
+// ====================================
+// ====== Date selection section ======
+// ====================================
+.date-selection {
+    background: #fff;
+
+    &__period--active {
+        background: theme-color("primary");
+        color: #fff;    
+    }
+
+    &__toggler {
+        flex-grow: 1;
+        align-items: center;    
+    }
+}

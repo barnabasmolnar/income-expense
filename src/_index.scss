@@ -1,0 +1,10 @@
+body {
+    background: #eee;
+    color: theme-color("dark");
+}
+
+// Reset material icon styles
+.material-icons {
+    line-height: unset;
+    font-size: unset;
+}

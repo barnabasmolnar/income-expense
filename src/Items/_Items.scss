@@ -1,0 +1,52 @@
+// ===========================
+// ====== Items section ======
+// ===========================
+.col-icon {
+    @include make-col-ready();
+    flex: 0 0 60px;
+
+    @include media-breakpoint-up(sm) {
+        flex: 0 0 75px;
+        font-size: 1.5rem;
+    }
+}
+.items {
+    &__row {
+        transition: .2s ease all;
+
+        &:hover {
+            background: #eee;
+
+            .items__actions {
+                display: flex !important;
+            }
+        }
+    }
+
+    &__icon {
+        color: $text-muted;
+        text-align: center;
+
+        @include media-breakpoint-up(sm) {
+            margin-right: 1rem;
+        }
+    }
+
+    &__content-category {
+        font-size: .8rem;
+        text-transform: uppercase;
+        letter-spacing: .2px;
+    }
+
+    &__content-title {
+        font-weight: 700;
+    }
+
+    &__actions {
+        display: none !important;
+    }
+
+    &__action-elem {
+        margin: 0 .5rem;
+    }
+}

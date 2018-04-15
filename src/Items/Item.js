@@ -5,35 +5,35 @@ const formatAmount = (num, currency) => {
 }
 
 const iconMapping = {
-    "food": "fa-utensils",
-    "travel": "fa-ticket-alt",
-    "wage": "fa-money-bill-alt"
+    "food": "fa-cutlery",
+    "travel": "fa-bus",
+    "wage": "fa-money",
+    "repairs": "fa-wrench"
 }
 
 const Item = props => {
-    const typeClassName = `text-white py-3 rounded-left d-flex justify-content-center align-items-center ${props.type === "income" ? "bg-success" : "bg-danger"}`;
-    const iconClassName = `fas ${iconMapping[props.category]} h2 m-0`;
+    const iconClassName = `fa ${iconMapping[props.category]}`;
 
     return (
-        <div className="row mb-2">
-            <div className="col-lg-9 col-xl-8 mx-auto">
-                <div className="income-expense-item d-flex soft-shadow">
-                    <div className={typeClassName}>
-                        <i className={iconClassName}></i>
-                    </div>
-                    <div className="bg-white w-100 px-4 py-3 rounded-right d-flex-column justify-content-left align-items-center">
-                        <span className="d-block h5">{formatAmount(props.amount, props.currency)}</span>
-                        <span className="d-block small">{props.title}</span>
-                    </div>
+
+        <div className={`row align-items-center py-3 items__row items__row--${props.type}`}>
+            <div className="col-icon items__icon">
+                <i className={iconClassName} aria-hidden="true"></i>
+            </div>
+            <div className="col items__content">
+                <div className="items__content-category">{props.category}</div>
+                <div className="items__content-title">{props.title}</div>
+            </div>
+            <div className="col-auto items__amount income-colour">{formatAmount(props.amount, props.currency)}</div>
+            <div className="col-auto d-flex items__actions">
+                <div className="items__action-elem">
+                    Action
                 </div>
-                <div className="mt-1 hidden-actions bg-white card">
-                    <div className="card-body">
-                        <div className="d-flex justify-content-center">
-                            <i className="fas fa-pen-square text-primary h5 my-0 mx-4"></i>
-                            <i className="fas fa-trash text-danger h5 my-0 mx-4"></i>
-                            <i className="fas fa-info-circle text-info h5 my-0 mx-4"></i>
-                        </div>
-                    </div>
+                <div className="items__action-elem">
+                    Action
+                </div>
+                <div className="items__action-elem">
+                    Action
                 </div>
             </div>
         </div>

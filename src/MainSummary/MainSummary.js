@@ -1,25 +1,9 @@
 import React from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { changeType, prevDate, nextDate } from "../actions/index";
-import "./MainSummary.css";
-import { getWeek, inPeriod, hasType } from "../helpers";
+import { changeType } from "../actions/index";
+import { inPeriod, hasType } from "../helpers";
 import classnames from "classnames";
-
-const formatPeriod = date => {
-    switch (date.period) {
-        case "year":
-            return date.timestamp.format("YYYY")
-        case "month":
-            return date.timestamp.format("MMMM YYYY")
-        case "week":
-            const start = date.timestamp.clone().isoWeekday(1)
-            const end = date.timestamp.clone().isoWeekday(7)
-            return [start, end]
-                .map(d => d.format("MMMM Do, YYYY"))
-                .join(" - ")
-    }
-}
 
 const calcSums = (items, date) => {
     const filteredItems = items.filter(item => inPeriod(date, item));
@@ -38,63 +22,44 @@ const calcSums = (items, date) => {
 
 const MainSummary = props => {
     return (
-        <div className="jumbotron jumbotron-fluid mb-0">
-            <div className="container">
-                <div className="row mb-4">
-                    <div className="col d-flex justify-content-between">
-                        <div 
-                            className="col-2 d-flex justify-content-start align-items-center"
-                            onClick={props.prevDate}
-                        >
-                            <i className="fas fa-angle-left h4"></i>
-                        </div>
-
-                        <div className="col-8 d-flex justify-content-center align-items-center">
-                            {formatPeriod(props.currentDate)}
-                        </div>
-
-                        <div 
-                            className="col-2 d-flex justify-content-end align-items-center"
-                            onClick={props.nextDate}
-                        >
-                            <i className="fas fa-angle-right h4"></i>
-                        </div>
+        <div className="col-12 col-md-7 order-2 order-md-1 main-summary">
+            <div className="row">
+                <div 
+                    className={classnames("col text-center p-3 border-right main-summary__type", {"main-summary__type--active": props.selectedType === null})}
+                    onClick={() => props.changeType(null)}
+                >
+                    <div className="d-inline-block main-summary__icon main-summary__icon--active">
+                        <i className="material-icons" aria-hidden="true">account_balance_wallet</i>
+                    </div>
+                    <div className="main-summary__content">
+                        <div>Balance</div>
+                        <div>{props.summary.balance.toLocaleString()} HUF</div>
                     </div>
                 </div>
-        
-                <div className="row">
-                    <div className="col-sm-4 mb-2 mb-sm-0">
-                        <div
-                            className={classnames("card bg-info text-white h-100 soft-shadow", {"selected-type": props.selectedType === null})}
-                            onClick={() => props.changeType(null)}
-                        >
-                            <div className="card-body">
-                                <span className="d-block">Balance</span>
-                                <span className="d-block h5">{props.summary.balance.toLocaleString()} HUF</span>
-                            </div>
-                        </div>
+
+                <div 
+                    className={classnames("col text-center p-3 border-right main-summary__type", {"main-summary__type--active": props.selectedType === "income"})}
+                    onClick={() => props.changeType("income")}
+                >
+                    <div className="d-inline-block main-summary__icon income-bg">
+                        <i class="material-icons" aria-hidden="true">trending_up</i>
                     </div>
-                    <div className="col-sm-4 mb-2 mb-sm-0">
-                        <div
-                            className={classnames("card bg-success text-white h-100 soft-shadow", {"selected-type": props.selectedType === "income"})}
-                            onClick={() => props.changeType("income")}
-                        >
-                            <div className="card-body">
-                                <span className="d-block">Income</span>
-                                <span className="d-block h5">{props.summary.incomeSum.toLocaleString()} HUF</span>
-                            </div>
-                        </div>
+                    <div className="main-summary__content">
+                        <div>Income</div>
+                        <div>{props.summary.incomeSum.toLocaleString()} HUF</div>
                     </div>
-                    <div className="col-sm-4">
-                        <div
-                            className={classnames("card bg-danger text-white h-100 soft-shadow", {"selected-type": props.selectedType === "expense"})}
-                            onClick={() => props.changeType("expense")}
-                        >
-                            <div className="card-body">
-                                <span className="d-block">Expense</span>
-                                <span className="d-block h5">{props.summary.expenseSum.toLocaleString()} HUF</span>
-                            </div>
-                        </div>
+                </div>
+
+                <div
+                    className={classnames("col text-center p-3 main-summary__type", {"main-summary__type--active": props.selectedType === "expense"})}
+                    onClick={() => props.changeType("expense")}
+                >
+                    <div className="d-inline-block main-summary__icon expense-bg">
+                        <i className="material-icons" aria-hidden="true">trending_down</i>
+                    </div>
+                    <div className="main-summary__content">
+                        <div>Expense</div>
+                        <div>{props.summary.expenseSum.toLocaleString()} HUF</div>
                     </div>
                 </div>
             </div>
@@ -110,13 +75,10 @@ const MainSummary = props => {
 
 const mapDispatchToProps = dispatch => bindActionCreators({
     changeType,
-    prevDate,
-    nextDate
 }, dispatch);
 
 const mapStateToProps = state => ({
     selectedType: state.type,
-    currentDate: state.date,
     summary: calcSums(state.items, state.date)
 });
 
