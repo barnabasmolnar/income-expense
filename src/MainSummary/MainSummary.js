@@ -42,7 +42,7 @@ const MainSummary = props => {
                     onClick={() => props.changeType("income")}
                 >
                     <div className="d-inline-block main-summary__icon income-bg">
-                        <i class="material-icons" aria-hidden="true">trending_up</i>
+                        <i className="material-icons" aria-hidden="true">trending_up</i>
                     </div>
                     <div className="main-summary__content">
                         <div>Income</div>

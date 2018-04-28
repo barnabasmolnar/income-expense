@@ -19,8 +19,10 @@ import {
     changePeriod,
     prevDate,
     nextDate,
-    changeType
+    changeType,
+    ADD_ITEM
 } from "../actions/index";
+import uuid from "uuid/v1";
 
 const initialItems = [
     {
@@ -111,7 +113,18 @@ const changeDate = (state, changeDir) => {
 }
 
 // Reducers
-const items = (state = initialItems) => state;
+const items = (state = initialItems, action) => {
+    switch (action.type) {
+        case ADD_ITEM:
+            const item = {
+                id: uuid(),
+                ...action.item
+            }
+            return [...state, item];
+        default:
+            return state;
+    }
+}
 
 const date = (state = initialDate, action) => {
     switch (action.type) {

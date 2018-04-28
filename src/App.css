@@ -3627,3 +3627,11 @@ body {
 
 .items__action-elem {
   margin: 0 .5rem; }
+
+.add-item {
+  max-width: 800px;
+  margin: 0 auto;
+  padding-left: 15px;
+  padding-right: 15px;
+  background: #fff;
+  border: 1px solid #cececa; }
