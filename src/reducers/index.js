@@ -118,6 +118,7 @@ const items = (state = initialItems, action) => {
         case ADD_ITEM:
             const item = {
                 id: uuid(),
+                dateAdded: new Date(),
                 ...action.item
             }
             return [...state, item];

@@ -13,15 +13,29 @@ class AddItem extends Component {
             category: "food",
             name: "",
             amount: 0,
+            currency: "HUF",
             extraInfo: "",
-            recurring: "no"
+            recurring: "no",
+            error: false
         }
+
+        this.handleAddItem = this.handleAddItem.bind(this);
     }
 
     render() {
         return (
             <div className="add-item">
                 <div className="container-fluid p-0">
+
+                {
+                    this.state.error
+                        ?
+                        <div className="alert alert-danger my-3" role="alert" id="add-item__error">
+                            Be sure to include a name and an amount. 
+                        </div>
+                        : null
+                }
+
                     <div className="row pt-4 pb-5">
                         <div className="col-sm-4 add-item__label">Type</div>
                         <div className="col-sm-8">
@@ -94,7 +108,32 @@ class AddItem extends Component {
                                 value={this.state.amount}
                             />
                         </div>
-                        <div className="col-sm-5 mt-3 mt-sm-0 col-lg-6 d-flex align-items-center">HUF | EUR | GBP | USD</div>
+                        <div className="col-sm-5 mt-3 mt-sm-0 col-lg-6 d-flex align-items-center add-item__currencies">
+                            <span 
+                                className={classnames({"active-currency": this.state.currency === "HUF"})} 
+                                onClick={() => this.changeCurrency("HUF")}
+                            >
+                                HUF
+                            </span>
+                            <span 
+                                className={classnames({"active-currency": this.state.currency === "EUR"})} 
+                                onClick={() => this.changeCurrency("EUR")}
+                            >
+                                EUR
+                            </span>
+                            <span 
+                                className={classnames({"active-currency": this.state.currency === "GBP"})} 
+                                onClick={() => this.changeCurrency("GBP")}
+                            >
+                                GBP
+                            </span>
+                            <span 
+                                className={classnames({"active-currency": this.state.currency === "USD"})} 
+                                onClick={() => this.changeCurrency("USD")}
+                            >
+                                USD
+                            </span>
+                        </div>
                     </div>
 
                     <div className="row pt-4 pb-5 border-top">
@@ -167,6 +206,17 @@ class AddItem extends Component {
                             </div>
                         </div>
                     </div>
+
+                    <div className="row">
+                        <div className="col text-right">
+                            <button
+                                className="add-item__btn"
+                                onClick={this.handleAddItem}
+                            >
+                                Add Item
+                            </button>
+                        </div>
+                    </div>
                 </div>
             </div>
         )
@@ -178,6 +228,34 @@ class AddItem extends Component {
     
     changeProperties(prop) {
         return e => this.setState({ [prop]: e.target.value });
+    }
+
+    changeCurrency(currency) {
+        this.setState({ currency });
+    }
+
+    handleAddItem() {
+        if (this.state.name && this.state.amount > 0) {
+            let { type, category, name, amount, currency, extraInfo, recurring } = this.state;
+
+            switch (currency) {
+                case "EUR":
+                    amount *= 313;
+                    break;
+                case "USD":
+                    amount *= 258;
+                    break;
+                case "GBP":
+                    amount *= 355;
+                    break;
+                default:
+                    amount *= 1;
+            }
+
+            this.props.addItem({ type, category, name, amount, extraInfo, recurring });
+        } else {
+            this.setState({ error: true }, () => window.location.hash = "add-item__error");
+        }
     }
 }
 
