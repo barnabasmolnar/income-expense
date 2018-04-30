@@ -23,3 +23,6 @@ yarn-error.log*
 # new-design
 /new-design/node_modules
 /new-design/dist
+
+# compiled css
+/src/App.css
