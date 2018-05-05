@@ -1,23 +1,18 @@
 import React from "react";
 import "./App.css";
 import NavBar from "./NavBar/NavBar";
-import MainSummary from "./MainSummary/MainSummary";
-import DateSelection from "./DateSelection/DateSelection";
-import Items from "./Items/Items";
+import Main from "./Main/Main";
 import AddItem from "./AddItem/AddItem";
+import { BrowserRouter as Router, Route } from "react-router-dom";
 
 const App = () => (
-    <div>
-        <AddItem />
-        <NavBar />
-        <div className="container my-5">
-            <div className="row">
-                <MainSummary />
-                <DateSelection />
-            </div>
+    <Router>
+        <div>
+            <NavBar />
+            <Route exact path="/" component={Main} />
+            <Route path="/additem" component={AddItem} />
         </div>
-        <Items />
-    </div>
+    </Router>
 )
 
 export default App;

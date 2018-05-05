@@ -11,7 +11,7 @@ class AddItem extends Component {
         this.state = {
             type: "income",
             category: "food",
-            name: "",
+            title: "",
             amount: 0,
             currency: "HUF",
             extraInfo: "",
@@ -90,8 +90,8 @@ class AddItem extends Component {
                                 className="form-control"
                                 type="text"
                                 placeholder="Item name"
-                                onChange={this.changeProperties("name")}
-                                value={this.state.name}
+                                onChange={this.changeProperties("title")}
+                                value={this.state.title}
                             />
                         </div>
                     </div>
@@ -235,8 +235,8 @@ class AddItem extends Component {
     }
 
     handleAddItem() {
-        if (this.state.name && this.state.amount > 0) {
-            let { type, category, name, amount, currency, extraInfo, recurring } = this.state;
+        if (this.state.title && this.state.amount > 0) {
+            let { type, category, title, amount, currency, extraInfo, recurring } = this.state;
 
             switch (currency) {
                 case "EUR":
@@ -252,7 +252,10 @@ class AddItem extends Component {
                     amount *= 1;
             }
 
-            this.props.addItem({ type, category, name, amount, extraInfo, recurring });
+            this.props.addItem({ type, category, title, amount, extraInfo, recurring });
+            
+            // send me back to root
+            this.props.history.push("/");
         } else {
             this.setState({ error: true }, () => window.location.hash = "add-item__error");
         }
