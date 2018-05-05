@@ -20,13 +20,15 @@ import {
     prevDate,
     nextDate,
     changeType,
-    ADD_ITEM
+    ADD_ITEM,
+    REMOVE_ITEM,
+    EDIT_ITEM
 } from "../actions/index";
 import uuid from "uuid/v1";
 
 const initialItems = [
     {
-        id: 1,
+        id: "1",
         type: "expense",
         category: "food",
         title: "Pizza from Pizza Forte",
@@ -38,7 +40,7 @@ const initialItems = [
         isRecurring: false
     },
     {
-        id: 2,
+        id: "2",
         type: "expense",
         category: "travel",
         title: "Monthly pass",
@@ -50,7 +52,7 @@ const initialItems = [
         isRecurring: true
     },
     {
-        id: 3,
+        id: "3",
         type: "income",
         category: "wage",
         title: "Monthly wage",
@@ -62,7 +64,7 @@ const initialItems = [
         isRecurring: true
     },
     {
-        id: 4,
+        id: "4",
         type: "expense",
         category: "repairs",
         title: "Bathroom repairs",
@@ -74,7 +76,7 @@ const initialItems = [
         isRecurring: false
     },
     {
-        id: 5,
+        id: "5",
         type: "expense",
         category: "food",
         title: "Chicken",
@@ -86,7 +88,7 @@ const initialItems = [
         isRecurring: false
     },
     {
-        id: 6,
+        id: "6",
         type: "income",
         category: "gift",
         title: "Christmas gift",
@@ -122,6 +124,10 @@ const items = (state = initialItems, action) => {
                 ...action.item
             }
             return [...state, item];
+        case REMOVE_ITEM:
+            return state.filter(item => item.id !== action.id);
+        case EDIT_ITEM:
+            return state.map(item => item.id === action.item.id ? action.item : item);
         default:
             return state;
     }

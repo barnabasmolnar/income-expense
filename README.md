@@ -12,10 +12,12 @@ An application to help you keep track of your income and expenses.
 * [x] Date toggling within selected period
 * [x] Filter by type (all/income/expense)
 * [x] Switch to new design (see below)
+* [x] React Router added
+* [x] Add items form
+* [x] Full CRUD funcitonality (sort of)
 
 ### Todo:
-* [ ] Add items form
-* [ ] Full CRUD funcitonality
+* [ ] Design/styling is a work in progress
 * [ ] Additional filters/sorting (e.g. by category, by amount, etc)
 * [ ] Implement backend and database
 

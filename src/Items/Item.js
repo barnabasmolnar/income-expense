@@ -1,4 +1,8 @@
 import React from "react";
+import { connect } from "react-redux";
+import { bindActionCreators } from "redux";
+import { removeItem } from "../actions/index";
+import { Link } from "react-router-dom";
 
 const formatAmount = (num, currency) => {
     return `${num.toLocaleString()} ${currency}`
@@ -27,17 +31,24 @@ const Item = props => {
             <div className="col-auto items__amount income-colour">{formatAmount(props.amount, props.currency)}</div>
             <div className="col-auto d-flex items__actions">
                 <div className="items__action-elem">
-                    Action
+                    Details
                 </div>
                 <div className="items__action-elem">
-                    Action
+                    <Link to={`/item/${props.id}/edit`}>Edit</Link>
                 </div>
-                <div className="items__action-elem">
-                    Action
+                <div
+                    className="items__action-elem"
+                    onClick={() => props.removeItem(props.id)}
+                >
+                    Delete
                 </div>
             </div>
         </div>
     )
 }
 
-export default Item;
+const mapDispatchToProps = dispatch => bindActionCreators({
+    removeItem,
+}, dispatch);
+
+export default connect(null, mapDispatchToProps)(Item);
