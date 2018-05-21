@@ -22,7 +22,8 @@ import {
     changeType,
     ADD_ITEM,
     REMOVE_ITEM,
-    EDIT_ITEM
+    EDIT_ITEM,
+    SORT_ITEM
 } from "../actions/index";
 import uuid from "uuid/v1";
 
@@ -132,6 +133,15 @@ const items = (state = initialItems, action) => {
             return state;
     }
 }
+const initialSortState = { prop: "dateAdded", order: "desc" };
+const sortItems = (state = initialSortState, action) => {
+    switch (action.type) {
+        case SORT_ITEM:
+            return { prop: action.prop, order: action.order };
+        default:
+            return state;
+    }
+}
 
 const date = (state = initialDate, action) => {
     switch (action.type) {
@@ -150,6 +160,7 @@ const type = (state = null, action) => action.type === CHANGE_TYPE ? action.newT
 
 const reducers = combineReducers({
     items,
+    sortItems,
     date,
     type
 });
