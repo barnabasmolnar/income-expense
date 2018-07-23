@@ -4,6 +4,10 @@
 .date-selection {
     background: #fff;
 
+    &__period {
+        cursor: pointer;
+    }
+
     &__period--active {
         background: theme-color("primary");
         color: #fff;    
@@ -13,4 +17,8 @@
         flex-grow: 1;
         align-items: center;    
     }
+}
+
+.date-toggler__toggle {
+    cursor: pointer;
 }

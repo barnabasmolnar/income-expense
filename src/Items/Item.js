@@ -31,7 +31,7 @@ const Item = props => {
             <div className="col-auto items__amount income-colour">{formatAmount(props.amount, props.currency)}</div>
             <div className="col-auto d-flex items__actions">
                 <div className="items__action-elem">
-                    Details
+                    <Link to={`/item/${props.id}/details`}>Details</Link>
                 </div>
                 <div className="items__action-elem">
                     <Link to={`/item/${props.id}/edit`}>Edit</Link>

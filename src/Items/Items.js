@@ -4,6 +4,7 @@ import { bindActionCreators } from "redux";
 import { sortItem } from "../actions/index";
 import Item from "./Item";
 import { getWeek, inPeriod, hasType } from "../helpers";
+import classnames from "classnames";
 
 const visibilityFilter = state => state.items.filter( item => inPeriod(state.date, item) && hasType(state.type, item) );
 const sortFilter = (state, items) => {
@@ -15,23 +16,74 @@ const sortFilter = (state, items) => {
 const Items = props => {
     return (
         <div>
-            <div className="container bg-white p-sm-5 sort-items">
-                <div className="row">
-                    <div className="col-sm sort__by-price">
-                        <div>Sort by price</div>
-                        <div className="sort--desc" onClick={() => props.sortItem("amount", "desc")}>Descending</div>
-                        <div className="sort--asc" onClick={() => props.sortItem("amount", "asc")}>Ascending</div>
+            <div className="container bg-white sort-items">
+                <div className="row pb-4">
+                    <div className="col-md d-flex align-items-center border-bottom py-1 py-md-3 sort__by-price">
+                        <div className="d-inline-flex"><i class="mr-2 material-icons">attach_money</i> Sort by price</div>
+                        <div className="d-inline-flex ml-auto ml-md-3 sort--asc" onClick={() => props.sortItem("amount", "asc")}>
+                            <i 
+                                className=
+                                    {
+                                        classnames(
+                                            "material-icons sort-icon sort--asc-icon",
+                                            {"sort-icon--active": props.activeSort.prop === "amount" && props.activeSort.order === "asc"}
+                                        )
+                                    }
+                            >
+                                sort
+                            </i>
+                        </div>
+                        <div className="d-inline-flex sort--desc" onClick={() => props.sortItem("amount", "desc")}>
+                            <i 
+                                className=
+                                {
+                                    classnames(
+                                        "material-icons sort-icon sort--desc-icon",
+                                        {"sort-icon--active": props.activeSort.prop === "amount" && props.activeSort.order === "desc"}
+                                    )
+                                }
+                            >
+                                sort
+                            </i>
+                        </div>
                     </div>
-                    <div className="col-sm sort__by-date">
-                        <div>Sort by date added</div>
-                        <div className="sort--desc" onClick={() => props.sortItem("dateAdded", "desc")}>Descending</div>
-                        <div className="sort--asc" onClick={() => props.sortItem("dateAdded", "asc")}>Ascending</div>
+                    <div className="col-md d-flex align-items-center border-bottom py-1 py-md-3 justify-content-md-end sort__by-date">
+                        <div className="d-inline-flex"><i class="mr-2 material-icons">calendar_today</i> Sort by date added</div>
+                        <div className="d-inline-flex ml-auto ml-md-3 sort--desc" onClick={() => props.sortItem("dateAdded", "asc")}>
+                            <i 
+                                className=
+                                {
+                                    classnames(
+                                        "material-icons sort-icon sort--asc-icon",
+                                        {"sort-icon--active": props.activeSort.prop === "dateAdded" && props.activeSort.order === "asc"}
+                                    )
+                                }
+                            >
+                                sort
+                            </i>
+                        </div>
+                        <div className="d-inline-flex sort--desc" onClick={() => props.sortItem("dateAdded", "desc")}>
+                            <i 
+                                className=
+                                {
+                                    classnames(
+                                        "material-icons sort-icon sort--desc-icon",
+                                        {"sort-icon--active": props.activeSort.prop === "dateAdded" && props.activeSort.order === "desc"}
+                                    )
+                                }
+                            >
+                                sort
+                            </i>
+                        </div>
                     </div>
                 </div>
             </div>
-            <div className="container items bg-white p-sm-5">
+
+            <div className="container items pb-4 bg-white">
                 {
-                    props.items.map( item => <Item {...item} key={item.id} /> )
+                    props.items.length < 1
+                    ? <div className="text-center">No items in this range</div>
+                    : props.items.map( item => <Item {...item} key={item.id} /> )
                 }
             </div>
         </div>
@@ -43,7 +95,8 @@ const mapDispatchToProps = dispatch => bindActionCreators({
 }, dispatch);
 
 const mapStateToProps = state => ({
-    items: sortFilter(state.sortItems, visibilityFilter(state))
+    items: sortFilter(state.sortItems, visibilityFilter(state)),
+    activeSort: state.sortItems
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Items);

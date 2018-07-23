@@ -1,6 +1,24 @@
 // ===========================
 // ====== Items section ======
 // ===========================
+.sort-icon {
+    cursor: pointer;
+
+    opacity: .5;
+
+    &--active {
+        opacity: 1;
+    }
+}
+
+.sort--desc-icon {
+    font-size: 1.5rem;
+    transform: rotate(-90deg);
+}
+.sort--asc-icon {
+    font-size: 1.5rem;
+    transform: rotate(90deg) scale(-1,1);
+}
 .col-icon {
     @include make-col-ready();
     flex: 0 0 60px;

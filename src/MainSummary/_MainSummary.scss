@@ -4,6 +4,8 @@
 .main-summary__type {
     background: #fff;
 
+    cursor: pointer;
+
     &--active {
         border-top: 4px solid theme-color("primary") !important;
     }

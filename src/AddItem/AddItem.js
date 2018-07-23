@@ -24,7 +24,7 @@ class AddItem extends Component {
 
     render() {
         return (
-            <div className="add-item">
+            <div className="my-5 add-item">
                 <div className="container-fluid p-0">
 
                 {
@@ -207,10 +207,10 @@ class AddItem extends Component {
                         </div>
                     </div>
 
-                    <div className="row">
+                    <div className="row mb-4">
                         <div className="col text-right">
                             <button
-                                className="add-item__btn"
+                                className="bg-primary text-white text-uppercase add-item__btn"
                                 onClick={this.handleAddItem}
                             >
                                 Add Item
