@@ -4,7 +4,7 @@ import DateSelection from "../DateSelection/DateSelection";
 import Items from "../Items/Items";
 
 const Main = () => (
-    <div>
+    <div className="position-absolute to-be-transitioned">
         <div className="container my-5">
             <div className="row">
                 <MainSummary />

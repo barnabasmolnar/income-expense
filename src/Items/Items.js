@@ -19,7 +19,7 @@ const Items = props => {
             <div className="container bg-white sort-items">
                 <div className="row pb-4">
                     <div className="col-md d-flex align-items-center border-bottom py-1 py-md-3 sort__by-price">
-                        <div className="d-inline-flex"><i class="mr-2 material-icons">attach_money</i> Sort by price</div>
+                        <div className="d-inline-flex"><i className="mr-2 material-icons">attach_money</i> Sort by price</div>
                         <div className="d-inline-flex ml-auto ml-md-3 sort--asc" onClick={() => props.sortItem("amount", "asc")}>
                             <i 
                                 className=
@@ -48,7 +48,7 @@ const Items = props => {
                         </div>
                     </div>
                     <div className="col-md d-flex align-items-center border-bottom py-1 py-md-3 justify-content-md-end sort__by-date">
-                        <div className="d-inline-flex"><i class="mr-2 material-icons">calendar_today</i> Sort by date added</div>
+                        <div className="d-inline-flex"><i className="mr-2 material-icons">calendar_today</i> Sort by date added</div>
                         <div className="d-inline-flex ml-auto ml-md-3 sort--desc" onClick={() => props.sortItem("dateAdded", "asc")}>
                             <i 
                                 className=

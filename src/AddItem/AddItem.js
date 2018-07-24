@@ -24,7 +24,7 @@ class AddItem extends Component {
 
     render() {
         return (
-            <div className="my-5 add-item">
+            <div className="my-5 position-absolute to-be-transitioned add-item">
                 <div className="container-fluid p-0">
 
                 {

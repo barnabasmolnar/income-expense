@@ -11,7 +11,7 @@ const NavBar = () => (
                 </div>
                 <div className="col-auto pr-0 text-right">
                     <Link to="/additem" className="text-white text-uppercase d-inline-flex align-items-center bg-primary navbar__add-item">
-                        <i class="material-icons mr-sm-2 navbar__add-item-icon">library_add</i>
+                        <i className="material-icons mr-sm-2 navbar__add-item-icon">library_add</i>
                         <span className="d-none d-sm-inline-block">Add Item</span>
                     </Link>
                 </div>

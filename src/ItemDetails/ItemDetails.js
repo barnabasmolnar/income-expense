@@ -15,7 +15,7 @@ class ItemDetails extends Component {
 
     render() {
         return (
-            <div className="add-item">
+            <div className="my-5 position-absolute to-be-transitioned add-item">
                 <div className="container-fluid p-0">
                     <div className="row pt-4 pb-5">
                         <div className="col-sm-4 add-item__label">Type</div>
