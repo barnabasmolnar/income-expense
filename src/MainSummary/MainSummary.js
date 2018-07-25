@@ -2,11 +2,19 @@ import React from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { changeType } from "../actions/index";
-import { inPeriod, hasType } from "../helpers";
+import { inPeriod, hasType, isDefaultOrEqual } from "../helpers";
 import classnames from "classnames";
 
-const calcSums = (items, date) => {
-    const filteredItems = items.filter(item => inPeriod(date, item));
+const calcSums = (items, date, activeCateg) => {
+    // const filteredItems = items.filter(item => inPeriod(date, item));
+
+    const filteredItems = items.filter(
+        item =>
+            inPeriod(date, item)
+            &&
+            isDefaultOrEqual(activeCateg, item.category, "all")
+    );
+
     const income = filteredItems.filter(item => hasType("income", item));
     const expense = filteredItems.filter(item => hasType("expense", item));
 
@@ -79,7 +87,7 @@ const mapDispatchToProps = dispatch => bindActionCreators({
 
 const mapStateToProps = state => ({
     selectedType: state.type,
-    summary: calcSums(state.items, state.date)
+    summary: calcSums(state.items, state.date, state.filterByCateg)
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(MainSummary);

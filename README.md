@@ -15,11 +15,12 @@ An application to help you keep track of your income and expenses.
 * [x] React Router added
 * [x] Add items form
 * [x] Full CRUD funcitonality (sort of)
+* [x] Additional filters/sorting (category filter business logic is fully done but it is currently completely unstyled; that remains a todo item) 
+* [x] Implement backend and database
 
 ### Todo:
 * [ ] Design/styling is a work in progress
-* [ ] Additional filters/sorting (e.g. by category, by amount, etc)
-* [ ] Implement backend and database
+* [ ] Connect frontend with backend
 
 ---
 

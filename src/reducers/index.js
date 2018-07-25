@@ -23,7 +23,8 @@ import {
     ADD_ITEM,
     REMOVE_ITEM,
     EDIT_ITEM,
-    SORT_ITEM
+    SORT_ITEM,
+    CATEG_FILTER
 } from "../actions/index";
 import uuid from "uuid/v1";
 
@@ -143,6 +144,16 @@ const sortItems = (state = initialSortState, action) => {
     }
 }
 
+// Just trying out stuff
+const filterByCateg = (state = "all", action) => {
+    switch (action.type) {
+        case CATEG_FILTER:
+            return action.categ;
+        default:
+            return state;
+    }
+}
+
 const date = (state = initialDate, action) => {
     switch (action.type) {
         case CHANGE_PERIOD:
@@ -162,7 +173,8 @@ const reducers = combineReducers({
     items,
     sortItems,
     date,
-    type
+    type,
+    filterByCateg
 });
 
 // Pro megoldasok:

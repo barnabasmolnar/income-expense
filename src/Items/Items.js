@@ -3,10 +3,30 @@ import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { sortItem } from "../actions/index";
 import Item from "./Item";
-import { getWeek, inPeriod, hasType } from "../helpers";
+import { getWeek, inPeriod, hasType, isDefaultOrEqual } from "../helpers";
 import classnames from "classnames";
 
-const visibilityFilter = state => state.items.filter( item => inPeriod(state.date, item) && hasType(state.type, item) );
+// const visibilityFilter = state => state.items.filter( item => inPeriod(state.date, item) && hasType(state.type, item) );
+
+// Just trying out stuff
+// const visibilityFilter = state => state.items.filter(
+//     item =>
+//         inPeriod(state.date, item)
+//         &&
+//         hasType(state.type, item)
+//         &&
+//         state.filterByCateg === "all" ? true : item.category === state.filterByCateg
+// )
+
+const visibilityFilter = state => state.items.filter(
+    item =>
+        inPeriod(state.date, item)
+        &&
+        isDefaultOrEqual(state.type, item.type, null)
+        &&
+        isDefaultOrEqual(state.filterByCateg, item.category, "all")
+)
+
 const sortFilter = (state, items) => {
     return state.order === "desc"
     ? items.sort((a,b) => b[state.prop] - a[state.prop])
