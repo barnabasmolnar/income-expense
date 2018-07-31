@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import classnames from "classnames";
 import { connect } from "react-redux";
+import moment from "moment";
 
 class ItemDetails extends Component {
     constructor(props) {
@@ -53,11 +54,7 @@ class ItemDetails extends Component {
                                 className="custom-select"
                                 value={this.state.category}
                             >
-                                <option value="food">Food</option>
-                                <option value="travel">Travel</option>
-                                <option value="salary">Salary</option>
-                                <option value="repairs">Repairs</option>
-                                <option value="entertainment">Entertainment</option>
+                                <option value={this.state.category}>{this.state.category}</option>
                             </select>
                         </div>
                     </div>
@@ -130,6 +127,10 @@ class ItemDetails extends Component {
                         <div className="col-sm-8 pl-sm-0 mt-3 mt-sm-0">
                             { this.state.isRecurring === true ? "Yes" : "No" }
                         </div>
+                    </div>
+
+                    <div className="row pt-4 pb-5 border-top">
+                        <div className="col-sm date-added">Added on: <b> {moment(this.state.dateAdded).format('MMMM Do YYYY, hh:mm:ss')} </b> </div>
                     </div>
 
                 </div>

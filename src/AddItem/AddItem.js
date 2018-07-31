@@ -3,6 +3,7 @@ import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { addItem } from "../actions/index";
 import classnames from "classnames";
+import { categories } from "../categories";
 
 class AddItem extends Component {
     constructor(props) {
@@ -10,7 +11,7 @@ class AddItem extends Component {
         
         this.state = {
             type: "income",
-            category: "food",
+            category: categories[0],
             title: "",
             amount: 0,
             currency: "HUF",
@@ -74,11 +75,7 @@ class AddItem extends Component {
                                 onChange={this.changeProperties("category")}
                                 value={this.state.category}
                             >
-                                <option value="food">Food</option>
-                                <option value="travel">Travel</option>
-                                <option value="salary">Salary</option>
-                                <option value="repairs">Repairs</option>
-                                <option value="entertainment">Entertainment</option>
+                                { categories.map(category => <option key={category} value={category}>{category}</option>) }
                             </select>
                         </div>
                     </div>
