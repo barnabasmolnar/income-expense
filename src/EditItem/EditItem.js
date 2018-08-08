@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { editItem } from "../actions/index";
+import { editItemAsync } from "../actions/index";
 import classnames from "classnames";
 import { categories } from "../categories";
 
@@ -9,7 +9,7 @@ class EditItem extends Component {
     constructor(props) {
         super(props);
         
-        const item = props.items.find(item => item.id === props.match.params.id); 
+        const item = props.items.find(item => item._id === props.match.params._id);
 
         this.state = item;
 
@@ -226,7 +226,7 @@ class EditItem extends Component {
 
     handleEditItem() {
         if (this.state.title && this.state.amount > 0) {
-            let { id, type, category, title, amount, currency, extraInfo, recurring } = this.state;
+            let { _id, type, category, title, amount, currency, extraInfo, recurring } = this.state;
 
             switch (currency) {
                 case "EUR":
@@ -242,7 +242,7 @@ class EditItem extends Component {
                     amount *= 1;
             }
 
-            this.props.editItem({ id, type, category, title, amount, extraInfo, recurring });
+            this.props.editItem({ _id, type, category, title, amount, extraInfo, recurring });
             
             // send me back to root
             this.props.history.push("/");
@@ -256,7 +256,7 @@ class EditItem extends Component {
 const mapStateToProps = state => ({ items: state.items });
 
 const mapDispatchToProps = dispatch => bindActionCreators({
-    editItem
+    editItem: editItemAsync
 }, dispatch);
 
 export default connect(mapStateToProps, mapDispatchToProps)(EditItem);

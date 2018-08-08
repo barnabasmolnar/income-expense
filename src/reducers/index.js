@@ -24,7 +24,8 @@ import {
     REMOVE_ITEM,
     EDIT_ITEM,
     SORT_ITEM,
-    CATEG_FILTER
+    CATEG_FILTER,
+    GET_ITEMS
 } from "../actions/index";
 import uuid from "uuid/v1";
 
@@ -117,19 +118,18 @@ const changeDate = (state, changeDir) => {
 }
 
 // Reducers
-const items = (state = initialItems, action) => {
+const items = (state = [], action) => {
     switch (action.type) {
+        case GET_ITEMS:
+            const items = action.items.map(item => ({...item, dateAdded: new Date(item.dateAdded)}))
+            return items;
         case ADD_ITEM:
-            const item = {
-                id: uuid(),
-                dateAdded: new Date(),
-                ...action.item
-            }
+            const item = {...action.item, dateAdded: new Date(action.item.dateAdded)}
             return [...state, item];
         case REMOVE_ITEM:
-            return state.filter(item => item.id !== action.id);
+            return state.filter(item => item._id !== action._id);
         case EDIT_ITEM:
-            return state.map(item => item.id === action.item.id ? action.item : item);
+            return state.map(item => item._id === action.item._id ? action.item : item);
         default:
             return state;
     }

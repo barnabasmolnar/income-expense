@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { addItem } from "../actions/index";
+import { addItemAsync } from "../actions/index";
 import classnames from "classnames";
 import { categories } from "../categories";
 
@@ -260,7 +260,7 @@ class AddItem extends Component {
 }
 
 const mapDispatchToProps = dispatch => bindActionCreators({
-    addItem,
+    addItem: addItemAsync,
 }, dispatch);
 
 export default connect(null, mapDispatchToProps)(AddItem);

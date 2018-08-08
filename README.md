@@ -24,6 +24,10 @@ An application to help you keep track of your income and expenses.
 * [ ] Design/styling is a work in progress
 * [ ] Connect frontend with backend
 
+### Some things to consider:
+* [ ] Might want to use axios instead of fetch for a better error handling experience (fetch won’t reject on HTTP error status even if the response is an HTTP 404 or 500)
+* [ ] Sorting by date works but is not very elegant at the moment... sorting by date relies on JS Date Objects but the "dates" we get back when we parse the server response are actually strings... so we have to do some extra work to convert them into date objects again
+
 ---
 
 ## New design

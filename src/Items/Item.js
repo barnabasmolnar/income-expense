@@ -1,7 +1,7 @@
 import React from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { removeItem } from "../actions/index";
+import { removeItemAsync } from "../actions/index";
 import { Link } from "react-router-dom";
 import { categoryIcons } from "../categories";
 
@@ -23,14 +23,14 @@ const Item = props => {
             <div className="col-auto items__amount income-colour">{formatAmount(props.amount, "HUF")}</div>
             <div className="col-auto d-flex items__actions">
                 <div className="items__action-elem">
-                    <Link to={`/item/${props.id}/details`}>Details</Link>
+                    <Link to={`/item/${props._id}/details`}>Details</Link>
                 </div>
                 <div className="items__action-elem">
-                    <Link to={`/item/${props.id}/edit`}>Edit</Link>
+                    <Link to={`/item/${props._id}/edit`}>Edit</Link>
                 </div>
                 <div
                     className="items__action-elem"
-                    onClick={() => props.removeItem(props.id)}
+                    onClick={() => props.removeItem(props._id)}
                 >
                     Delete
                 </div>
@@ -40,7 +40,7 @@ const Item = props => {
 }
 
 const mapDispatchToProps = dispatch => bindActionCreators({
-    removeItem,
+    removeItem: removeItemAsync,
 }, dispatch);
 
 export default connect(null, mapDispatchToProps)(Item);

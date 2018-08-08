@@ -9,7 +9,7 @@ class ItemDetails extends Component {
         
         console.log(`Props are: ${props}`);
 
-        const item = props.items.find(item => item.id === props.match.params.id); 
+        const item = props.items.find(item => item._id === props.match.params._id); 
 
         this.state = item;
     }
@@ -144,7 +144,7 @@ const mapStateToProps = state => ({ items: state.items });
 export default connect(mapStateToProps)(ItemDetails);
 
 // could do it this way too:
-// const mapStateToProps = (state, props) => ({ item: state.items.find(item => item.id == props.match.params.id) })
+// const mapStateToProps = (state, props) => ({ item: state.items.find(item => item._id == props.match.params._id) })
 // this way, we'd use this.props.item.title instead of this.state.title for example
 // the truth is, this component is purely presentational and should require no state
 // but it was easier to just copy + paste the EditItem layout and make some small changes

@@ -29,8 +29,8 @@ const visibilityFilter = state => state.items.filter(
 
 const sortFilter = (state, items) => {
     return state.order === "desc"
-    ? items.sort((a,b) => b[state.prop] - a[state.prop])
-    : items.sort((a,b) => a[state.prop] - b[state.prop]);
+        ? items.sort((a,b) => b[state.prop] - a[state.prop])
+        : items.sort((a,b) => a[state.prop] - b[state.prop]);
 }
 
 const Items = props => {
@@ -103,7 +103,7 @@ const Items = props => {
                 {
                     props.items.length < 1
                     ? <div className="text-center">No items in this range</div>
-                    : props.items.map( item => <Item {...item} key={item.id} /> )
+                    : props.items.map( item => <Item {...item} key={item._id} /> )
                 }
             </div>
         </div>

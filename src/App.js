@@ -19,8 +19,8 @@ const App = () => (
                             <Switch location={location}>
                                 <Route exact path="/" component={Main} />
                                 <Route path="/additem" component={AddItem} />
-                                <Route path="/item/:id/edit" component={EditItem} />
-                                <Route path="/item/:id/details" component={ItemDetails} />
+                                <Route path="/item/:_id/edit" component={EditItem} />
+                                <Route path="/item/:_id/details" component={ItemDetails} />
                             </Switch>
                         </CSSTransition>
                     </TransitionGroup>

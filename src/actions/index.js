@@ -7,9 +7,8 @@ export const ADD_ITEM = "ADD_ITEM";
 export const REMOVE_ITEM = "REMOVE_ITEM";
 export const EDIT_ITEM = "EDIT_ITEM";
 export const SORT_ITEM = "SORT_ITEM";
-
-// Just trying out stuff
 export const CATEG_FILTER = "CATEG_FILTER";
+export const GET_ITEMS = "GET_ITEMS";
 
 // Action creators
 export const changePeriod = period => ({ type: CHANGE_PERIOD, period });
@@ -17,9 +16,76 @@ export const prevDate = () => ({ type: PREV_DATE });
 export const nextDate = () => ({ type: NEXT_DATE });
 export const changeType = newType => ({ type: CHANGE_TYPE, newType });
 export const addItem = item => ({ type: ADD_ITEM, item });
-export const removeItem = id => ({ type: REMOVE_ITEM, id });
+export const removeItem = _id => ({ type: REMOVE_ITEM, _id });
 export const editItem = item => ({ type: EDIT_ITEM, item });
 export const sortItem = (prop, order) => ({ type: SORT_ITEM, prop, order });
-
-// Just trying out stuff
 export const categFilter = categ => ({ type: CATEG_FILTER, categ });
+
+export const getItems = items => ({ type: GET_ITEMS, items });
+
+// Async stuff:
+export function fetchItems() {
+    return dispatch => {
+        fetch("http://localhost:3001/api/items")
+            .then(res => {
+                if (res.status === 200) {
+                    res.json()
+                        .then(items => dispatch(getItems(items)))
+                }
+            })
+    }
+}
+
+export function addItemAsync(item) {
+    return dispatch => {
+        fetch("http://localhost:3001/api/items", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json; charset=utf-8",
+            },
+            body: JSON.stringify(item)
+        })
+            .then(res => {
+                if (res.status === 200) {
+                    res.json()
+                        .then(item => dispatch(addItem(item)))
+                }
+            })
+    }
+}
+
+export function editItemAsync(item) {
+    return dispatch => {
+        fetch(`http://localhost:3001/api/items/${item._id}`, {
+            method: "PUT",
+            headers: {
+                "Content-Type": "application/json; charset=utf-8",
+            },
+            body: JSON.stringify(item)
+        })
+            .then(res => {
+                if (res.status === 204) {
+                    dispatch(editItem(item))
+                }
+            })
+    }
+}
+
+export function removeItemAsync(_id) {
+    return dispatch => {
+        fetch(`http://localhost:3001/api/items/${_id}`, {
+            method: "DELETE"
+        })
+            .then(res => {
+                if (res.status === 204) {
+                    dispatch(removeItem(_id))
+                }
+            })
+    }
+}
+
+// export function addTodoAsync(title) {
+//     return (dispatch) =>
+//         axios.post("http://localhost:3001/api/todos", { title })
+//             .then(({ data: { title, _id }}) => dispatch(addTodo(title, _id)))
+// }
