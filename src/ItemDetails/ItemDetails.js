@@ -125,7 +125,7 @@ class ItemDetails extends Component {
                         <div className="col-sm-4 add-item__label">Recurring?</div>
 
                         <div className="col-sm-8 pl-sm-0 mt-3 mt-sm-0">
-                            { this.state.isRecurring === true ? "Yes" : "No" }
+                            { this.state.recurring }
                         </div>
                     </div>
 

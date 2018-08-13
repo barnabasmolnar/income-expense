@@ -140,7 +140,7 @@ class AddItem extends Component {
                                 className="form-control"
                                 rows="5"
                                 onChange={this.changeProperties("extraInfo")}
-                                value={this.state.changeExtraInfo}
+                                value={this.state.extraInfo}
                             >
                             </textarea>
                         </div>

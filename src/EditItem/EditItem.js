@@ -133,7 +133,7 @@ class EditItem extends Component {
                                 className="form-control"
                                 rows="5"
                                 onChange={this.changeProperties("extraInfo")}
-                                value={this.state.changeExtraInfo}
+                                value={this.state.extraInfo}
                             >
                             </textarea>
                         </div>
@@ -226,7 +226,7 @@ class EditItem extends Component {
 
     handleEditItem() {
         if (this.state.title && this.state.amount > 0) {
-            let { _id, type, category, title, amount, currency, extraInfo, recurring } = this.state;
+            let { _id, type, category, title, amount, currency, extraInfo, recurring, dateAdded, userName } = this.state;
 
             switch (currency) {
                 case "EUR":
@@ -242,7 +242,7 @@ class EditItem extends Component {
                     amount *= 1;
             }
 
-            this.props.editItem({ _id, type, category, title, amount, extraInfo, recurring });
+            this.props.editItem({ _id, type, category, title, amount, extraInfo, recurring, dateAdded, userName });
             
             // send me back to root
             this.props.history.push("/");

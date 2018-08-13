@@ -1,3 +1,5 @@
+import {myFetch, parseWith, convertDate} from "../helpers";
+
 // Action types
 export const CHANGE_PERIOD = "CHANGE_PERIOD";
 export const PREV_DATE = "PREV_DATE";
@@ -26,66 +28,48 @@ export const getItems = items => ({ type: GET_ITEMS, items });
 // Async stuff:
 export function fetchItems() {
     return dispatch => {
-        fetch("http://localhost:3001/api/items")
-            .then(res => {
-                if (res.status === 200) {
-                    res.json()
-                        .then(items => dispatch(getItems(items)))
-                }
-            })
+        myFetch("http://localhost:3001/api/items")
+            .then(parseWith(convertDate))
+            .then(items => dispatch(getItems(items)))
+            .catch(err => console.log(err))
     }
 }
 
 export function addItemAsync(item) {
     return dispatch => {
-        fetch("http://localhost:3001/api/items", {
+        myFetch("http://localhost:3001/api/items", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json; charset=utf-8",
             },
             body: JSON.stringify(item)
         })
-            .then(res => {
-                if (res.status === 200) {
-                    res.json()
-                        .then(item => dispatch(addItem(item)))
-                }
-            })
+            .then(parseWith(convertDate))
+            .then(item => dispatch(addItem(item)))
+            .catch(err => console.log(err))
     }
 }
 
 export function editItemAsync(item) {
     return dispatch => {
-        fetch(`http://localhost:3001/api/items/${item._id}`, {
+        myFetch(`http://localhost:3001/api/items/${item._id}`, {
             method: "PUT",
             headers: {
                 "Content-Type": "application/json; charset=utf-8",
             },
             body: JSON.stringify(item)
         })
-            .then(res => {
-                if (res.status === 204) {
-                    dispatch(editItem(item))
-                }
-            })
+            .then(()=> dispatch(editItem(item)))
+            .catch(err => console.log(err))
     }
 }
 
 export function removeItemAsync(_id) {
     return dispatch => {
-        fetch(`http://localhost:3001/api/items/${_id}`, {
+        myFetch(`http://localhost:3001/api/items/${_id}`, {
             method: "DELETE"
         })
-            .then(res => {
-                if (res.status === 204) {
-                    dispatch(removeItem(_id))
-                }
-            })
+            .then(() => dispatch(removeItem(_id)))
+            .catch(err => console.log(err))
     }
 }
-
-// export function addTodoAsync(title) {
-//     return (dispatch) =>
-//         axios.post("http://localhost:3001/api/todos", { title })
-//             .then(({ data: { title, _id }}) => dispatch(addTodo(title, _id)))
-// }

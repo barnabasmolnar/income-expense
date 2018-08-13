@@ -15,7 +15,7 @@ const App = () => (
             <Route
                 render={({ location }) => (
                     <TransitionGroup>
-                        <CSSTransition key={location.key} classNames="fade" timeout={1000}>
+                        <CSSTransition key={location.pathname} classNames="fade" timeout={1000}>
                             <Switch location={location}>
                                 <Route exact path="/" component={Main} />
                                 <Route path="/additem" component={AddItem} />

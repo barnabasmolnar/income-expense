@@ -19,14 +19,17 @@ An application to help you keep track of your income and expenses.
 * [x] Page transitions added
 * [x] Additional filters/sorting (category filter business logic is fully done but it is currently completely unstyled; that remains a todo item) 
 * [x] Implement backend and database
+* [x] Connect frontend with backend
 
 ### Todo:
 * [ ] Design/styling is a work in progress
-* [ ] Connect frontend with backend
+* [ ] up-to-date currency conversion via 3rd party API
 
 ### Some things to consider:
-* [ ] Might want to use axios instead of fetch for a better error handling experience (fetch won’t reject on HTTP error status even if the response is an HTTP 404 or 500)
-* [ ] Sorting by date works but is not very elegant at the moment... sorting by date relies on JS Date Objects but the "dates" we get back when we parse the server response are actually strings... so we have to do some extra work to convert them into date objects again
+* [x] Might want to use axios instead of fetch for a better error handling experience (fetch won’t reject on HTTP error status even if the response is an HTTP 404 or 500) => **so in the end I decided to write a custom wrapper around fetch which checks the Response.ok property; if it's anywhere in the range of 200-299 (https://developer.mozilla.org/en-US/docs/Web/API/Response/ok) then we resolve with the response, otherwise we reject with the statusText**
+* [x] Sorting by date works but is not very elegant at the moment... sorting by date relies on JS Date Objects but the "dates" we get back when we parse the server response are actually strings... so we have to do some extra work to convert them into date objects again => **instead of simply calling res.json(), we use a custom parser that takes care of the date conversion (see the parseWith and convertDate functions in the helpers)**
+
+
 
 ---
 

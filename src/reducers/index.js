@@ -121,11 +121,9 @@ const changeDate = (state, changeDir) => {
 const items = (state = [], action) => {
     switch (action.type) {
         case GET_ITEMS:
-            const items = action.items.map(item => ({...item, dateAdded: new Date(item.dateAdded)}))
-            return items;
+            return action.items
         case ADD_ITEM:
-            const item = {...action.item, dateAdded: new Date(action.item.dateAdded)}
-            return [...state, item];
+            return [...state, action.item];
         case REMOVE_ITEM:
             return state.filter(item => item._id !== action._id);
         case EDIT_ITEM:
