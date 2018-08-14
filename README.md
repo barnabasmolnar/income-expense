@@ -24,6 +24,22 @@ An application to help you keep track of your income and expenses.
 ### Todo:
 * [ ] Design/styling is a work in progress
 * [ ] up-to-date currency conversion via 3rd party API
+* [ ] for now, get rid of the recurring option on the UI (i have some ideas what to do with it, see below, but with no business logic in place yet, it doesn't really do anything now)
+
+---
+
+### Recurring functionality:
+Let's illustrate the idea with an example:
+* user creates an item
+* picks "monthly" as the recurring option
+* one month (plus/minus a couple of days) from the item's creation date the user will receive a notification alert that the item is due again
+* user clicks on said notification and the item gets added automatically with the same data as before
+
+As far as the UI is concerned, one approach would be to place a notification icon on the navbar somewhere with a number next to it. The number would indicate the number of items that are due in the past/next couple of days. Clicking the icon would take the user to a new page with a listing of all due items. Clicking on a given element would create that item with the same data as before.
+
+**This is a sort of bonus feature and is not a priority right now.**
+
+---
 
 ### Some things to consider:
 * [x] Might want to use axios instead of fetch for a better error handling experience (fetch won’t reject on HTTP error status even if the response is an HTTP 404 or 500) => **so in the end I decided to write a custom wrapper around fetch which checks the Response.ok property; if it's anywhere in the range of 200-299 (https://developer.mozilla.org/en-US/docs/Web/API/Response/ok) then we resolve with the response, otherwise we reject with the statusText**
