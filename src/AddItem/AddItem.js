@@ -233,23 +233,8 @@ class AddItem extends Component {
 
     handleAddItem() {
         if (this.state.title && this.state.amount > 0) {
-            let { type, category, title, amount, currency, extraInfo, recurring } = this.state;
 
-            switch (currency) {
-                case "EUR":
-                    amount *= 313;
-                    break;
-                case "USD":
-                    amount *= 258;
-                    break;
-                case "GBP":
-                    amount *= 355;
-                    break;
-                default:
-                    amount *= 1;
-            }
-
-            this.props.addItem({ type, category, title, amount, extraInfo, recurring });
+            this.props.addItem(this.state);
             
             // send me back to root
             this.props.history.push("/");
