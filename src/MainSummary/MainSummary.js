@@ -33,7 +33,7 @@ const MainSummary = props => {
         <div className="col-12 col-md-7 order-2 order-md-1 main-summary">
             <div className="row">
                 <div 
-                    className={classnames("col text-center p-3 border-right main-summary__type", {"main-summary__type--active": props.selectedType === null})}
+                    className={classnames("col text-center p-1 p-sm-3 border-right main-summary__type", {"main-summary__type--active": props.selectedType === null})}
                     onClick={() => props.changeType(null)}
                 >
                     <div className="d-inline-block main-summary__icon main-summary__icon--active">
@@ -46,7 +46,7 @@ const MainSummary = props => {
                 </div>
 
                 <div 
-                    className={classnames("col text-center p-3 border-right main-summary__type", {"main-summary__type--active": props.selectedType === "income"})}
+                    className={classnames("col text-center p-1 p-sm-3 border-right main-summary__type", {"main-summary__type--active": props.selectedType === "income"})}
                     onClick={() => props.changeType("income")}
                 >
                     <div className="d-inline-block main-summary__icon income-bg">
@@ -59,7 +59,7 @@ const MainSummary = props => {
                 </div>
 
                 <div
-                    className={classnames("col text-center p-3 main-summary__type", {"main-summary__type--active": props.selectedType === "expense"})}
+                    className={classnames("col text-center p-1 p-sm-3 main-summary__type", {"main-summary__type--active": props.selectedType === "expense"})}
                     onClick={() => props.changeType("expense")}
                 >
                     <div className="d-inline-block main-summary__icon expense-bg">

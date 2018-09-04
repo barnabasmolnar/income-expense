@@ -146,60 +146,63 @@ class AddItem extends Component {
                         </div>
                     </div>
 
-                    <div className="row pt-4 pb-5 border-top">
-                        <div className="col-sm-4 add-item__label">Recurring?</div>
+                    {/* Hide for now */}
+                    <div className="d-none">
+                        <div className="row pt-4 pb-5 border-top">
+                            <div className="col-sm-4 add-item__label">Recurring?</div>
 
-                        <div className="col-sm-8 pl-sm-0 mt-3 mt-sm-0">
-                            <div className="custom-control custom-radio custom-control-inline">
-                                <input
-                                    type="radio"
-                                    id="recurring-no"
-                                    name="recurring-no"
-                                    className="custom-control-input"
-                                    value="no"
-                                    onChange={this.changeProperties("recurring")}
-                                    checked={this.state.recurring === "no"}
-                                />
-                                <label className="custom-control-label" htmlFor="recurring-no">No</label>
-                            </div>
+                            <div className="col-sm-8 pl-sm-0 mt-3 mt-sm-0">
+                                <div className="custom-control custom-radio custom-control-inline">
+                                    <input
+                                        type="radio"
+                                        id="recurring-no"
+                                        name="recurring-no"
+                                        className="custom-control-input"
+                                        value="no"
+                                        onChange={this.changeProperties("recurring")}
+                                        checked={this.state.recurring === "no"}
+                                    />
+                                    <label className="custom-control-label" htmlFor="recurring-no">No</label>
+                                </div>
 
-                            <div className="custom-control custom-radio custom-control-inline">
-                                <input
-                                    type="radio"
-                                    id="recurring-weekly"
-                                    name="recurring-weekly"
-                                    className="custom-control-input"
-                                    value="weekly"
-                                    onChange={this.changeProperties("recurring")}
-                                    checked={this.state.recurring === "weekly"}
-                                />
-                                <label className="custom-control-label" htmlFor="recurring-weekly">Weekly</label>
-                            </div>
+                                <div className="custom-control custom-radio custom-control-inline">
+                                    <input
+                                        type="radio"
+                                        id="recurring-weekly"
+                                        name="recurring-weekly"
+                                        className="custom-control-input"
+                                        value="weekly"
+                                        onChange={this.changeProperties("recurring")}
+                                        checked={this.state.recurring === "weekly"}
+                                    />
+                                    <label className="custom-control-label" htmlFor="recurring-weekly">Weekly</label>
+                                </div>
 
-                            <div className="custom-control custom-radio custom-control-inline">
-                                <input
-                                    type="radio"
-                                    id="recurring-monthly"
-                                    name="recurring-monthly"
-                                    className="custom-control-input"
-                                    value="monthly"
-                                    onChange={this.changeProperties("recurring")}
-                                    checked={this.state.recurring === "monthly"}
-                                />
-                                <label className="custom-control-label" htmlFor="recurring-monthly">Monthly</label>
-                            </div>
+                                <div className="custom-control custom-radio custom-control-inline">
+                                    <input
+                                        type="radio"
+                                        id="recurring-monthly"
+                                        name="recurring-monthly"
+                                        className="custom-control-input"
+                                        value="monthly"
+                                        onChange={this.changeProperties("recurring")}
+                                        checked={this.state.recurring === "monthly"}
+                                    />
+                                    <label className="custom-control-label" htmlFor="recurring-monthly">Monthly</label>
+                                </div>
 
-                            <div className="custom-control custom-radio custom-control-inline">
-                                <input
-                                    type="radio"
-                                    id="recurring-yearly"
-                                    name="recurring-yearly"
-                                    className="custom-control-input"
-                                    value="yearly"
-                                    onChange={this.changeProperties("recurring")}
-                                    checked={this.state.recurring === "yearly"}
-                                />
-                                <label className="custom-control-label" htmlFor="recurring-yearly">Yearly</label>
+                                <div className="custom-control custom-radio custom-control-inline">
+                                    <input
+                                        type="radio"
+                                        id="recurring-yearly"
+                                        name="recurring-yearly"
+                                        className="custom-control-input"
+                                        value="yearly"
+                                        onChange={this.changeProperties("recurring")}
+                                        checked={this.state.recurring === "yearly"}
+                                    />
+                                    <label className="custom-control-label" htmlFor="recurring-yearly">Yearly</label>
+                                </div>
                             </div>
                         </div>
                     </div>

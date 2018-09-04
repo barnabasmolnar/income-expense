@@ -21,18 +21,22 @@ const Item = props => {
                 <div className="items__content-title">{props.title}</div>
             </div>
             <div className="col-auto items__amount income-colour">{formatAmount(props.amount, "HUF")}</div>
-            <div className="col-auto d-flex items__actions">
+            <div className="col-auto items__actions">
                 <div className="items__action-elem">
-                    <Link to={`/item/${props._id}/details`}>Details</Link>
+                    <Link to={`/item/${props._id}/details`}>
+                        <i className="fa fa-eye items__action-elem-icon" aria-hidden="true"></i> Details
+                    </Link>
                 </div>
                 <div className="items__action-elem">
-                    <Link to={`/item/${props._id}/edit`}>Edit</Link>
+                    <Link to={`/item/${props._id}/edit`}>
+                        <i className="fa fa-pencil items__action-elem-icon" aria-hidden="true"></i> Edit
+                    </Link>
                 </div>
                 <div
                     className="items__action-elem"
                     onClick={() => props.removeItem(props._id)}
                 >
-                    Delete
+                    <i className="fa fa-trash-o items__action-elem-icon" aria-hidden="true"></i> Delete
                 </div>
             </div>
         </div>

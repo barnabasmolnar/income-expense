@@ -3,7 +3,8 @@ import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { sortItem } from "../actions/index";
 import Item from "./Item";
-import { getWeek, inPeriod, hasType, isDefaultOrEqual } from "../helpers";
+// import { getWeek, inPeriod, hasType, isDefaultOrEqual } from "../helpers";
+import { inPeriod, isDefaultOrEqual } from "../helpers";
 import classnames from "classnames";
 
 // const visibilityFilter = state => state.items.filter( item => inPeriod(state.date, item) && hasType(state.type, item) );

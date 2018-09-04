@@ -16,10 +16,10 @@ import {
     PREV_DATE,
     NEXT_DATE,
     CHANGE_TYPE,
-    changePeriod,
-    prevDate,
-    nextDate,
-    changeType,
+    // changePeriod,
+    // prevDate,
+    // nextDate,
+    // changeType,
     ADD_ITEM,
     REMOVE_ITEM,
     EDIT_ITEM,
@@ -27,8 +27,9 @@ import {
     CATEG_FILTER,
     GET_ITEMS
 } from "../actions/index";
-import uuid from "uuid/v1";
+// import uuid from "uuid/v1";
 
+/*
 const initialItems = [
     {
         id: "1",
@@ -103,6 +104,7 @@ const initialItems = [
         isRecurring: true
     }
 ]
+*/
 
 const initialDate = {
     period: "year",

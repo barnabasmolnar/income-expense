@@ -85,25 +85,8 @@ class ItemDetails extends Component {
                             />
                         </div>
                         <div className="col-sm-5 mt-3 mt-sm-0 col-lg-6 d-flex align-items-center add-item__currencies">
-                            <span 
-                                className={classnames({"active-currency": this.state.currency === "HUF"})} 
-                            >
+                            <span className="active-currency">
                                 HUF
-                            </span>
-                            <span 
-                                className={classnames({"active-currency": this.state.currency === "EUR"})} 
-                            >
-                                EUR
-                            </span>
-                            <span 
-                                className={classnames({"active-currency": this.state.currency === "GBP"})} 
-                            >
-                                GBP
-                            </span>
-                            <span 
-                                className={classnames({"active-currency": this.state.currency === "USD"})} 
-                            >
-                                USD
                             </span>
                         </div>
                     </div>
@@ -121,11 +104,14 @@ class ItemDetails extends Component {
                         </div>
                     </div>
 
-                    <div className="row pt-4 pb-5 border-top">
-                        <div className="col-sm-4 add-item__label">Recurring?</div>
+                    {/* Hide for now */}
+                    <div className="d-none">
+                        <div className="row pt-4 pb-5 border-top">
+                            <div className="col-sm-4 add-item__label">Recurring?</div>
 
-                        <div className="col-sm-8 pl-sm-0 mt-3 mt-sm-0">
-                            { this.state.recurring }
+                            <div className="col-sm-8 pl-sm-0 mt-3 mt-sm-0">
+                                { this.state.recurring }
+                            </div>
                         </div>
                     </div>
 

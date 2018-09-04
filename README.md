@@ -22,9 +22,10 @@ An application to help you keep track of your income and expenses.
 * [x] Connect frontend with backend
 * [x] up-to-date currency conversion via 3rd party API implemented
 
+* [x] for now, get rid of the recurring option on the UI (i have some ideas what to do with it, see below, but with no business logic in place yet, it doesn't really do anything now)
+
 ### Todo:
 * [ ] Design/styling is a work in progress
-* [ ] for now, get rid of the recurring option on the UI (i have some ideas what to do with it, see below, but with no business logic in place yet, it doesn't really do anything now)
 
 ---
 
