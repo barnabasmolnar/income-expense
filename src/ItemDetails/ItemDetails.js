@@ -7,9 +7,7 @@ class ItemDetails extends Component {
     constructor(props) {
         super(props);
         
-        console.log(`Props are: ${props}`);
-
-        const item = props.items.find(item => item._id === props.match.params._id); 
+        const item = props.items.find(item => item._id === props.match.params._id);
 
         this.state = item;
     }

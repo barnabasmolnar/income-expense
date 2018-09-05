@@ -1,3 +1,8 @@
+html {
+    overflow-y: scroll;
+    min-height: 100%;
+}
+
 body {
     background: #eee;
     color: theme-color("dark");
@@ -8,13 +13,3 @@ body {
     line-height: unset;
     font-size: unset;
 }
-
-// .fade-enter {
-//     opacity: 0;
-//     z-index: 1;
-// }
-  
-// .fade-enter.fade-enter-active {
-//     opacity: 1;
-//     transition: opacity .25s ease-in;
-// }

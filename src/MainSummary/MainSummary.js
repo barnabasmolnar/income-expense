@@ -6,8 +6,6 @@ import { inPeriod, hasType, isDefaultOrEqual } from "../helpers";
 import classnames from "classnames";
 
 const calcSums = (items, date, activeCateg) => {
-    // const filteredItems = items.filter(item => inPeriod(date, item));
-
     const filteredItems = items.filter(
         item =>
             inPeriod(date, item)
@@ -75,14 +73,8 @@ const MainSummary = props => {
     )
 }
 
-// const mapDispatchToProps = dispatch => ({
-//     changeType: (newType) => dispatch(changeType(newType)),
-//     prevDate: () => dispatch(prevDate()),
-//     nextDate: () => dispatch(nextDate())
-// });
-
 const mapDispatchToProps = dispatch => bindActionCreators({
-    changeType,
+    changeType
 }, dispatch);
 
 const mapStateToProps = state => ({

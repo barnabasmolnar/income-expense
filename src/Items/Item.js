@@ -44,7 +44,7 @@ const Item = props => {
 }
 
 const mapDispatchToProps = dispatch => bindActionCreators({
-    removeItem: removeItemAsync,
+    removeItem: removeItemAsync
 }, dispatch);
 
 export default connect(null, mapDispatchToProps)(Item);

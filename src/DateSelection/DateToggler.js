@@ -5,8 +5,6 @@ import { bindActionCreators } from "redux";
 
 const formatPeriod = date => {
     switch (date.period) {
-        case "year":
-            return date.timestamp.format("YYYY")
         case "month":
             return date.timestamp.format("MMMM YYYY")
         case "week":
@@ -15,6 +13,8 @@ const formatPeriod = date => {
             return [start, end]
                 .map(d => d.format("MMMM Do, YYYY"))
                 .join(" - ")
+        default:
+            return date.timestamp.format("YYYY")
     }
 }
 
@@ -38,7 +38,7 @@ const mapDispatchToProps = dispatch => bindActionCreators({
 }, dispatch);
 
 const mapStateToProps = state => ({
-    currentDate: state.date,
+    currentDate: state.date
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(DateToggler);

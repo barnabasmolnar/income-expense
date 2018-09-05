@@ -9,8 +9,8 @@ class EditItem extends Component {
     constructor(props) {
         super(props);
         
-        const item = props.items.find(item => item._id === props.match.params._id);
-        item.currency = "HUF";
+        const tempItem = props.items.find(item => item._id === props.match.params._id);
+        const item = Object.assign({}, tempItem, {currency: "HUF"});
 
         this.state = item;
 
@@ -248,7 +248,6 @@ class EditItem extends Component {
 
             this.props.editItem({ _id, type, category, title, amount, extraInfo, recurring, dateAdded, userName });
             
-            // send me back to root
             this.props.history.push("/");
         } else {
             this.setState({ error: true }, () => window.location.hash = "add-item__error");

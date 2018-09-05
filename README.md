@@ -26,6 +26,7 @@ An application to help you keep track of your income and expenses.
 
 ### Todo:
 * [ ] Design/styling is a work in progress
+* [ ] Some additional error handling perhaps?
 
 ---
 

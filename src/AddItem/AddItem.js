@@ -239,7 +239,6 @@ class AddItem extends Component {
 
             this.props.addItem(this.state);
             
-            // send me back to root
             this.props.history.push("/");
         } else {
             this.setState({ error: true }, () => window.location.hash = "add-item__error");
