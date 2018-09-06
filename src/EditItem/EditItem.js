@@ -230,23 +230,8 @@ class EditItem extends Component {
 
     handleEditItem() {
         if (this.state.title && this.state.amount > 0) {
-            let { _id, type, category, title, amount, currency, extraInfo, recurring, dateAdded, userName } = this.state;
-
-            switch (currency) {
-                case "EUR":
-                    amount *= 313;
-                    break;
-                case "USD":
-                    amount *= 258;
-                    break;
-                case "GBP":
-                    amount *= 355;
-                    break;
-                default:
-                    amount *= 1;
-            }
-
-            this.props.editItem({ _id, type, category, title, amount, extraInfo, recurring, dateAdded, userName });
+            
+            this.props.editItem(this.state);
             
             this.props.history.push("/");
         } else {

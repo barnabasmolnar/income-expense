@@ -28,7 +28,7 @@ export const getItems = items => ({ type: GET_ITEMS, items });
 // Async stuff:
 export function fetchItems() {
     return dispatch => {
-        myFetch("http://localhost:3001/api/items")
+        myFetch("/api/items")
             .then(parseWith(convertDate))
             .then(items => dispatch(getItems(items)))
             .catch(err => console.log(err))
@@ -37,7 +37,7 @@ export function fetchItems() {
 
 export function addItemAsync(item) {
     return dispatch => {
-        myFetch("http://localhost:3001/api/items", {
+        myFetch("/api/items", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json; charset=utf-8",
@@ -52,21 +52,22 @@ export function addItemAsync(item) {
 
 export function editItemAsync(item) {
     return dispatch => {
-        myFetch(`http://localhost:3001/api/items/${item._id}`, {
+        myFetch(`/api/items/${item._id}`, {
             method: "PUT",
             headers: {
                 "Content-Type": "application/json; charset=utf-8",
             },
             body: JSON.stringify(item)
         })
-            .then(()=> dispatch(editItem(item)))
+            .then(parseWith(convertDate))
+            .then(newItem => dispatch(editItem(newItem)))
             .catch(err => console.log(err))
     }
 }
 
 export function removeItemAsync(_id) {
     return dispatch => {
-        myFetch(`http://localhost:3001/api/items/${_id}`, {
+        myFetch(`/api/items/${_id}`, {
             method: "DELETE"
         })
             .then(() => dispatch(removeItem(_id)))

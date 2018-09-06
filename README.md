@@ -24,6 +24,8 @@ An application to help you keep track of your income and expenses.
 
 * [x] for now, get rid of the recurring option on the UI (i have some ideas what to do with it, see below, but with no business logic in place yet, it doesn't really do anything now)
 
+* [x] PurgeCSS added as a dev dependency. On build, purgeCSS removes unused rules giving us a much smaller css output. Nice.
+
 ### Todo:
 * [ ] Design/styling is a work in progress
 * [ ] Some additional error handling perhaps?
