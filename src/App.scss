@@ -23,6 +23,7 @@
 .to-be-transitioned {
     left: 0;
     right: 0;
+    width: 100%; /* IE fix */
 }
 /* purgecss start ignore */
 .fade-enter {

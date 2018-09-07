@@ -63,3 +63,9 @@ This design is:
 * uses the BEM naming scheme
 
 The new design is a **work in progress**.
+
+---
+
+## Live Demo
+
+A live demo can be found here: https://income-expense-bm.herokuapp.com/
